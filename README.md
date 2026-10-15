@@ -134,7 +134,17 @@ All content lives in typed files under `constants/`, which is the single source 
 | `leadership.ts` | Leadership roles. Fill `details` with verified responsibilities. Optional speaking, conference and community lists stay hidden while empty |
 | `mentorship.ts` | Mentorship copy. Set `EGA_ROLE` only once confirmed |
 | `photos.ts` | Image paths, alt text and captions |
-| `contact.ts` | Enquiry categories, spam and rate-limit settings, game settings |
+| `contact.ts` | Enquiry categories, "what to include" guidance, spam and rate-limit settings, game settings |
+| `home.ts` | Home highlights strip and the project-lifecycle stages (each mapped to CV responsibilities) |
+| `about.ts` | Training journey, affiliations, languages, power-system map hotspots |
+| `caseStudies.ts` | Extra content for `/experience/[id]`: sector, general context, task explanations, diagram, related training, glossary terms |
+| `trainingGuides.ts` | Content for `/credentials/[id]` guide pages |
+| `glossary.ts` | Terms for `/insights/glossary` (linked from glossary chips site-wide) |
+| `quiz.ts`, `faq.ts`, `pathways.ts`, `insights.ts` | Mentorship quiz, FAQs, `/mentorship/pathways` content, Insights topic hubs |
+
+**Sub-pages:** each role has a full case study at `/experience/<id>` and each training item has a guide at `/credentials/<id>`. Both are generated from the constants above, so adding an entry adds a page and a sitemap entry. There are also `/mentorship/pathways` and `/insights/glossary`.
+
+**General context vs. claims:** text that explains a field in general terms is shown inside a "General context" note. Anything that states what Christabel did must come from her CV (`experience.ts`, `credentials.ts`, `leadership.ts`).
 
 Every item has a `status` and a `published` flag:
 - `published: false` hides an item.

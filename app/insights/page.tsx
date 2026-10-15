@@ -1,14 +1,16 @@
 import InsightsEmpty from "@/components/features/insights/InsightsEmpty";
 import PostCard from "@/components/features/insights/PostCard";
+import TopicHubs from "@/components/features/insights/TopicHubs";
 import PageHero from "@/components/ui/PageHero";
 import Section from "@/components/ui/Section";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { getAllPosts } from "@/lib/insights";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Insights",
   description:
-    "Articles by Christabel Owusu on renewable energy, power systems, engineering project delivery, energy efficiency and engineering careers.",
+    "Articles by Christabel Owusu on renewable energy, power systems, engineering project delivery, energy efficiency and engineering careers, plus an engineering glossary.",
   path: "/insights",
 });
 
@@ -31,6 +33,17 @@ export default function InsightsPage() {
             ))}
           </div>
         )}
+      </Section>
+      <Section className="pt-0 md:pt-0" labelledBy="hubs-title">
+        <SectionHeading
+          id="hubs-title"
+          eyebrow="Topic hubs"
+          title="What Insights will cover"
+          lede="Each hub will collect articles on one theme as they are published."
+        />
+        <div className="mt-10">
+          <TopicHubs />
+        </div>
       </Section>
     </>
   );

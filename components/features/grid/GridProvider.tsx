@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { usePathname } from "next/navigation";
 import { HUD_HIDDEN_KEY } from "@/constants/contact";
 import { PAGES } from "@/constants/pages";
 import { useGridState } from "@/hooks/useGridState";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { computeAchievements } from "@/lib/achievements";
+import { computeAchievements, EXTRA_PATH_SIGNALS } from "@/lib/achievements";
 import { pageKeyFromPath } from "@/lib/utils";
 import type { GridContextValue, PageKey } from "@/types";
 import AchievementToasts from "./AchievementToasts";
@@ -18,10 +18,17 @@ type Props = {
 };
 
 export default function GridProvider({ children }: Props) {
-  const current = pageKeyFromPath(usePathname());
+  const pathname = usePathname();
+  const current = pageKeyFromPath(pathname);
   const { ready, signals, toasts, send, reset, dismissToast } = useGridState(current);
   const [hudHidden, setHudHidden] = useLocalStorage<boolean>(HUD_HIDDEN_KEY, false);
   const [mapOpen, setMapOpen] = useState(false);
+
+  // Sub-pages such as the glossary earn their own signal too.
+  useEffect(() => {
+    const extra = EXTRA_PATH_SIGNALS[pathname];
+    if (ready && extra) send(extra);
+  }, [ready, pathname, send]);
 
   const value = useMemo<GridContextValue>(() => {
     const set = new Set(signals);

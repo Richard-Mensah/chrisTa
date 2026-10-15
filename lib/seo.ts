@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/constants/site";
-import type { Post } from "@/types";
+import type { FaqItem, GlossaryTerm, Post } from "@/types";
 
 type PageMetaInput = { title: string; description: string; path: string };
 
@@ -55,6 +55,46 @@ export function websiteJsonLd() {
     inLanguage: "en-GB",
     publisher: { "@id": `${SITE.url}/#person` },
     image: { "@type": "ImageObject", url: `${SITE.url}${SITE.logo}`, width: 800, height: 800 },
+  };
+}
+
+export function breadcrumbJsonLd(items: { label: string; href: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.label,
+      item: `${SITE.url}${c.href === "/" ? "" : c.href}`,
+    })),
+  };
+}
+
+export function faqJsonLd(items: FaqItem[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+}
+
+export function glossaryJsonLd(terms: GlossaryTerm[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    name: "Power and energy engineering glossary",
+    url: `${SITE.url}/insights/glossary`,
+    hasDefinedTerm: terms.map((t) => ({
+      "@type": "DefinedTerm",
+      name: t.term,
+      description: t.definition,
+      url: `${SITE.url}/insights/glossary#term-${t.slug}`,
+    })),
   };
 }
 

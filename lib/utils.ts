@@ -33,6 +33,13 @@ export function busbarPath(a: PageDef, b: PageDef): string {
   return `M${a.x} ${a.y}H${midX}V${b.y}H${b.x}`;
 }
 
+/** "2018 – 2019" → { start: 2018, end: 2019 }. Returns null when no year is given. */
+export function parseYearRange(period: string): { start: number; end: number } | null {
+  const years = period.match(/\d{4}/g)?.map(Number);
+  if (!years?.length) return null;
+  return { start: years[0], end: years[years.length - 1] };
+}
+
 export function joinEmail(user: string, domain: string): string {
   return [user, domain].join("@");
 }

@@ -1,4 +1,6 @@
-import { Award, BriefcaseBusiness, GraduationCap, ShieldCheck, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Award, BriefcaseBusiness, GraduationCap, ShieldCheck, type LucideIcon } from "lucide-react";
+import { hasGuide } from "@/lib/related";
 import PendingBadge from "@/components/ui/PendingBadge";
 import { CREDENTIAL_KIND_LABELS } from "@/constants/credentials";
 import type { Credential, CredentialKind } from "@/types";
@@ -37,6 +39,14 @@ export default function CredentialCard({ credential: c, compact = false }: Props
           <span>
             <PendingBadge>Confirm name, issuer &amp; date</PendingBadge>
           </span>
+        )}
+        {hasGuide(c.id) && (
+          <Link
+            href={`/credentials/${c.id}`}
+            className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+          >
+            Read the training guide <ArrowRight className="size-3.5" aria-hidden="true" />
+          </Link>
         )}
       </div>
     </div>

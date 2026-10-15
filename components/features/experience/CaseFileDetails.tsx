@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import PendingBadge from "@/components/ui/PendingBadge";
 import Photo from "@/components/ui/Photo";
 import type { Role } from "@/types";
@@ -46,6 +48,12 @@ export default function CaseFileDetails({ role, id, hidden }: Props) {
         ) : (
           <PendingBadge>Outcomes: awaiting details from Christabel</PendingBadge>
         )}
+        <Link
+          href={`/experience/${role.id}`}
+          className="inline-flex items-center gap-1.5 font-semibold text-accent hover:underline"
+        >
+          Read the full case study <ArrowRight className="size-4" aria-hidden="true" />
+        </Link>
       </div>
       {role.photo && (
         <Photo id={role.photo} sizes="(max-width: 768px) 100vw, 420px" className="min-h-72 rounded-none md:col-span-2" />

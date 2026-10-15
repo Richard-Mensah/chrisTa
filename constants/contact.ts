@@ -8,6 +8,15 @@ export const CATEGORIES: { value: CategoryValue; label: string }[] = [
   { value: "other", label: "Something else" },
 ];
 
+/** What to include, per enquiry type (keys match CATEGORIES values). */
+export const ENQUIRY_GUIDES: Record<CategoryValue, string[]> = {
+  engineering: ["The role or project, and where it is based", "Timeline and type of engagement", "Which part of her experience is relevant"],
+  collaboration: ["A short summary of the project or research", "What you would like to collaborate on", "Other partners involved"],
+  speaking: ["Event name, date and format (in person or online)", "Audience and suggested topic", "Any travel or time requirements"],
+  mentorship: ["Where you are in your studies or career", "What you would like guidance on", "Whether you are part of an EGA programme"],
+  other: ["A short summary of your request", "How best to reach you"],
+};
+
 /** Reject submissions filled in faster than this (bots). */
 export const MIN_FILL_MS = 3000;
 /** Per-IP contact limit. */

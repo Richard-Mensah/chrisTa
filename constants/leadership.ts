@@ -1,4 +1,4 @@
-import type { EngagementItem, LeadershipGroupKey, LeadershipRole } from "@/types";
+import type { EngagementItem, LeadershipGroupKey, LeadershipRole, LeadershipTheme } from "@/types";
 
 export const LEADERSHIP: LeadershipRole[] = [
   {
@@ -80,6 +80,33 @@ export const LEADERSHIP_GROUPS: { key: LeadershipGroupKey; title: string }[] = [
   { key: "student", title: "University leadership" },
   { key: "recognition", title: "Recognition" },
 ];
+
+/** Themes derived from the role titles above – not additional claims. */
+export const LEADERSHIP_THEMES: LeadershipTheme[] = [
+  {
+    title: "Energy-sector youth leadership",
+    text: "Held the energy and petroleum portfolio as a youth minister with the United Nations Youth Association of Ghana.",
+    roleIds: ["unya"],
+  },
+  {
+    title: "Women in Engineering",
+    text: "Led the GhIE Women in Engineering student chapter at UENR.",
+    roleIds: ["wine"],
+  },
+  {
+    title: "Student representation",
+    text: "Represented her class for the full degree and observed the University Students Association of Ghana senate.",
+    roleIds: ["classrep", "usag"],
+  },
+  {
+    title: "Communication & media",
+    text: "Public relations for the local NUGS chapter and media and publicity for the A.G.C.M UENR chapter.",
+    roleIds: ["nugs", "agcm"],
+  },
+];
+
+/** Year range covered by the leadership timeline chart. */
+export const LEADERSHIP_YEARS = { start: 2016, end: 2024 };
 
 /** Optional sections: each stays hidden while its list is empty. */
 export const ENGAGEMENT_SECTIONS: { id: string; title: string; items: EngagementItem[] }[] = [

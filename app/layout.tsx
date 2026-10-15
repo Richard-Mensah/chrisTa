@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 import { KEYWORDS, SITE } from "@/constants/site";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const fraunces = Fraunces({ subsets: ["latin"], axes: ["opsz"], variable: "--font-fraunces", display: "swap" });
@@ -54,7 +55,7 @@ type Props = {
 
 export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en-GB" className={`${fraunces.variable} ${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="en-GB" className={cn(fraunces.variable, plexSans.variable, plexMono.variable)}>
       <body>
         <a
           href="#main"

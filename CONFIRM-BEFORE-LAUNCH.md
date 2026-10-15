@@ -56,5 +56,14 @@ For each item, confirm the exact official name, the issuing organisation and the
 ## Wording
 - [ ] Final approval of the hero headline ("Engineering reliable power. Developing future leaders."), the biography on the About page, and the mentorship quote. The quote is written in her voice.
 
+## General engineering content (added in the page expansion)
+- [ ] Review the "General context" explanations on the case-study and training-guide pages. They describe each field in general terms. Check in particular:
+  - the GHA/GMAe switchgear description
+  - the transformer FAT test list
+  - the IEC 61850 topics
+- [ ] Review the glossary, the grid readiness quiz, the career pathways and both FAQs for accuracy and tone.
+- [ ] Confirm the training links on each case study ("Related training") are appropriate.
+- [ ] The NEDCo case study uses the China factory photo (captioned as such). Supply a NEDCo-era photo if one is available.
+
 ## Never published (by design)
 - Phone number, home locality, referees and their phone numbers, secondary/junior school history, and driver's licence.

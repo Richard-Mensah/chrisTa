@@ -5,7 +5,7 @@ import CaseFile from "./CaseFile";
 
 export default function CaseTimeline() {
   return (
-    <Section>
+    <Section className="pt-0 md:pt-0">
       <div className="relative grid gap-6 before:absolute before:bottom-6 before:left-[11px] before:top-6 before:w-0.5 before:bg-gradient-to-b before:from-brand-cyan before:to-line sm:before:left-[19px]">
         {PUBLISHED_ROLES.map((r) => (
           <CaseFile key={r.id} role={r} />

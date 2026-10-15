@@ -8,6 +8,26 @@ export const SKILL_KIND_LABELS: Record<SkillKind, string> = {
 
 export const SKILL_KINDS: SkillKind[] = ["experience", "tool", "training"];
 
+/** General primers on each field (shown as "general context"). */
+export const FIELD_PRIMERS = [
+  {
+    title: "Power systems & electrical infrastructure",
+    text: "Power systems move electricity from generators to consumers through transmission and distribution networks. Transformers change voltage levels, switchgear controls and protects circuits, and substations tie the network together. Reliability depends on correct installation, testing and routine maintenance.",
+  },
+  {
+    title: "Renewable energy",
+    text: "Solar PV plants generate DC electricity that inverters convert to AC for the grid. Once built, plants are run by operations and maintenance teams who monitor performance through SCADA and keep equipment available. Design tools such as PVsyst estimate how much energy a plant should produce.",
+  },
+  {
+    title: "Engineering project delivery",
+    text: "Electrical projects move through planning, design review, procurement, installation, testing and commissioning, and handover. Engineers on the owner's or contractor's side check submittals, supervise quality and safety on site, and prove systems work before they are energised.",
+  },
+  {
+    title: "Engineering software & digital tools",
+    text: "Engineers use CAD tools such as AutoCAD MEP for drawings, simulation tools for system design, office tools for planning and estimating, and increasingly drones and visual media for inspection and reporting.",
+  },
+];
+
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     id: "power",
