@@ -8,7 +8,7 @@ Items marked as needing confirmation show a dashed **"awaiting"** tag when the s
 - [ ] **GhIE status.** The CV lists "Professional Engineer (Electrical Division)" under Professional Body, and her name with "Ing." and "P.E.-GhIE".
   - Confirm the exact membership grade and registration number.
   - Confirm that "Ing." and "P.E.-GhIE" are the correct styles to display.
-  - *Files: `src/content/credentials.ts`, `src/content/site.ts`, About page.*
+  - *Files: `constants/credentials.ts`, `constants/site.ts`, About page.*
 
 ## Employment
 - [ ] **Bentry Company Limited.** Is the role (10/2023 – present) still current?
@@ -45,13 +45,13 @@ For each item, confirm the exact official name, the issuing organisation and the
 - [ ] Any speaking engagements, conferences or community service to add. These sections stay hidden while empty.
 
 ## Contact & profiles
-- [ ] Confirm that **cfremah30@gmail.com** may be shown publicly. It currently is, assembled in the browser to deter scrapers. Set `email.show` in `src/content/site.ts` to `false` to hide it.
+- [ ] Confirm that **cfremah30@gmail.com** may be shown publicly. It currently is, assembled in the browser to deter scrapers. Set `email.show` in `constants/site.ts` to `false` to hide it.
 - [ ] LinkedIn profile URL.
 - [ ] Domain name for the site.
 
 ## Photos
 - [ ] Consent from the other people visible in three photos: the training session, the factory showroom tour and the FAT review meeting.
-- [ ] Accurate captions for each photo (event, place, year). The current captions are deliberately generic. *File: `src/content/photos.ts`.*
+- [ ] Accurate captions for each photo (event, place, year). The current captions are deliberately generic. *File: `constants/photos.ts`.*
 
 ## Wording
 - [ ] Final approval of the hero headline ("Engineering reliable power. Developing future leaders."), the biography on the About page, and the mentorship quote. The quote is written in her voice.

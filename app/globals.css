@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* Brand tokens are taken from the CF logo: royal navy lettering and the
+   teal-to-blue "energy swoosh". Semantic tokens switch with the system theme. */
+@theme {
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --color-navy-950: #050d20;
+  --color-navy-900: #0a1a3a;
+  --color-navy-800: #0f2556;
+  --color-navy-700: #183470;
+  --color-navy-600: #24468c;
+  --color-brand-teal: #14afc0;
+  --color-brand-cyan: #3fd8d4;
+  --color-brand-blue: #1f6fd1;
+  --color-ondark: #e8eef7;
+  --color-ondark-muted: #a3b3cf;
+  --color-ondark-line: #1d3363;
+
+  --animate-flow: flow 1.4s linear infinite;
+  --animate-pulse-soft: pulse-soft 1.8s ease-in-out infinite;
+  --animate-pop: pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  --animate-rise: rise 0.6s ease-out both;
+
+  @keyframes flow {
+    to { stroke-dashoffset: -32; }
+  }
+  @keyframes pulse-soft {
+    50% { stroke-opacity: 0.3; }
+  }
+  @keyframes pop {
+    from { transform: translateY(16px) scale(0.96); opacity: 0; }
+  }
+  @keyframes rise {
+    from { transform: translateY(10px); }
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-pending: var(--pending);
+  --color-danger: var(--danger);
+}
+
+:root {
+  --canvas: #f5f7fb;
+  --surface: #ffffff;
+  --ink: #0b1a36;
+  --muted: #4f5f78;
+  --line: #dde4ee;
+  --accent: #0b7685;
+  --pending: #b4541a;
+  --danger: #b42318;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #060e1f;
+    --surface: #0d1b36;
+    --ink: #e6ecf5;
+    --muted: #9daecb;
+    --line: #1d2f52;
+    --accent: #3fd3d3;
+    --pending: #f08a4b;
+    --danger: #ff8a7a;
+    color-scheme: dark;
+  }
+}
+
+/* Faint engineering grid used behind dark panels. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--color-ondark-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-ondark-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 70% 35%, #000 0%, transparent 72%);
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(90deg, var(--color-brand-cyan), var(--color-brand-blue));
+  background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight text-balance;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-teal;
+  }
+  ::selection {
+    @apply bg-brand-teal/30;
+  }
+}

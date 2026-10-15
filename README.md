@@ -5,6 +5,26 @@ The personal website of Ing. Christabel Fremah Owusu, P.E.-GhIE, an Electrical &
 The site is built as a **power-grid journey**. Each of the nine pages is a substation that energises when a visitor opens it. A grid meter in the header tracks progress, a grid map doubles as navigation, and achievements unlock as visitors read the real content.
 
 - **Stack:** Next.js 15 (App Router) + TypeScript + Tailwind CSS v4, with Neon Postgres via Drizzle ORM.
+- **Code conventions:** the project follows [nextjs-llm-instructions.md](nextjs-llm-instructions.md):
+  - Tailwind utilities only, with brand tokens in `app/globals.css` `@theme`.
+  - One default-exported component per file, and no file over 200 lines.
+  - Thin pages; business logic in `lib/`; client fetching with SWR.
+
+**Project structure**
+
+```
+app/             routes, API handlers, favicon/icon/OG image, sitemap, robots, manifest
+components/ui/        dumb atoms (Button, Card, Section, Photo, FormField…)
+components/layout/    Navbar, MobileMenu, Footer
+components/features/  home, about, expertise, experience, credentials, mentorship,
+                      leadership, insights, contact, grid (the game layer)
+hooks/           useGrid, useGridState, useContactForm, useLocalStorage, useInView…
+lib/             utils (cn), validations (zod), db + dbSchema, contact/progress logic, seo
+types/           shared TypeScript types (index.ts, api.ts)
+constants/       all site content and settings – edit text here
+content/insights MDX articles (kept outside code folders so non-developers can edit them)
+drizzle/         generated SQL migrations
+```
 - **Hosting:** built for Vercel's free tier, with no paid services required.
 - **Pages:** Home, About, Expertise, Projects & Experience, Credentials, Mentorship, Leadership, Insights (MDX articles) and Contact, plus a custom 404.
 - **Backend (optional, Neon):**
@@ -31,7 +51,7 @@ npm run dev                  # http://localhost:3000
 | `npm run build` / `npm start` | Production build and server. Pending tags are hidden. |
 | `npm run check` | Lint, type-check and production build in one go. |
 | `npm run check:links` | Crawls a running server (`npm start` first) for broken internal links. |
-| `npm run db:generate` | Creates a new SQL migration after editing `src/db/schema.ts`. |
+| `npm run db:generate` | Creates a new SQL migration after editing `lib/dbSchema.ts`. |
 | `npm run db:migrate` | Applies migrations to the database in `DATABASE_URL`. |
 | `npm run db:studio` | Opens Drizzle Studio to browse enquiries and data. |
 
@@ -102,17 +122,19 @@ git push -u origin main
 
 ## 6. Editing content
 
-All content lives in typed files under `src/content/`, which is the single source of truth:
+All content lives in typed files under `constants/`, which is the single source of truth:
 
 | File | Controls |
 | --- | --- |
-| `site.ts` | Name, credentials line, email visibility, LinkedIn URL, site description |
+| `site.ts` | Name, credentials line, tagline, email visibility, LinkedIn URL, site description |
+| `content.ts` | Hero intro, focus areas, the About biography and timeline, insight topics |
 | `experience.ts` | Employment case files (add verified outcomes to `outcomes: []`) |
 | `credentials.ts` | Registration, education, training and certificates (add `date` once verified) |
 | `expertise.ts` | Skill groups. Each skill is tagged `experience`, `tool` or `training` |
 | `leadership.ts` | Leadership roles. Fill `details` with verified responsibilities. Optional speaking, conference and community lists stay hidden while empty |
-| `mentorship.ts` | Mentorship copy. Set `egaRole` only once confirmed |
+| `mentorship.ts` | Mentorship copy. Set `EGA_ROLE` only once confirmed |
 | `photos.ts` | Image paths, alt text and captions |
+| `contact.ts` | Enquiry categories, spam and rate-limit settings, game settings |
 
 Every item has a `status` and a `published` flag:
 - `published: false` hides an item.
@@ -140,7 +162,12 @@ Every item has a `status` and a `published` flag:
   - Unique titles and descriptions, and canonical URLs.
   - Open Graph and Twitter cards, plus a generated social image.
   - `sitemap.xml` and `robots.txt`.
-  - Person JSON-LD (and Article JSON-LD on articles).
+  - Person and WebSite JSON-LD, the latter carrying the logo (and Article JSON-LD on articles).
+  - **Favicon set from the CF logo:**
+    - `app/favicon.ico` (48/32/16 px), `app/icon.png` (512 px) and `app/apple-icon.png` (180 px).
+    - PWA icons in `public/icons/` and the manifest.
+    - Google shows the favicon in search results once the site is crawled. Submit the sitemap in Google Search Console after launch to speed this up.
+  - To change the logo, replace `public/images/logo.png` and `public/images/logo-mark.png`, then regenerate the icons.
   - All content is server-rendered; the game layer wraps it.
 - **Security headers** (`next.config.ts`): CSP, HSTS, `X-Frame-Options: DENY`, `nosniff`, Referrer-Policy and Permissions-Policy.
 - **Privacy:**

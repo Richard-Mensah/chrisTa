@@ -46,3 +46,7 @@ next-env.d.ts
 # keep the env template
 !.env.example
 
+
+# original high-resolution logo (web copies live in public/images and app/)
+/logo.png
+
